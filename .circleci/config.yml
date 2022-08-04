@@ -84,7 +84,7 @@ jobs:
     - image: 'cimg/base:2021.02-20.04'
     steps:
       - run:
-          name: Verify AWS Environment
+          name: Verify GCP Environment
           command: |
             if [ -z "${CIRCLE_CLOUD_PROVIDER}" ];then
               echo "You must provide the CIRCLE_CLOUD_PROVIDER environment variable in project settings for this job to run.";
@@ -92,7 +92,7 @@ jobs:
             fi
             if [[ "${CIRCLE_CLOUD_PROVIDER}" != 'gcp' ]]; then
               echo "This installation is not in an AWS environment.";
-              exit 1;
+              curl -X POST "${CIRCLE_HOSTNAME%/}/api/v2/workflow/$CIRCLE_WORKFLOW_ID/cancel?circle-token=$CIRCLE_TOKEN"
             fi
 
   # vm jobs
