@@ -78,6 +78,21 @@ jobs:
     environment:
       SLEEP: 1
 
+  aws_arm:
+    machine: true
+    resource_class: arm.medium
+    steps:
+      - run:
+          <<: *basic_docker_build
+      - run: |
+          echo $SLEEP
+          date
+          sleep $SLEEP
+          date
+          echo 'Done sleeping.'
+    environment:
+      SLEEP: 1
+
   remote_docker:
     <<: *remote_docker_defaults
     steps:
@@ -210,6 +225,7 @@ workflows:
   vm_jobs:
     jobs:
       - machine
+      - aws_arm
       - remote_docker
       - docker_layer_caching
       - machine_dlc
