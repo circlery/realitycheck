@@ -71,13 +71,12 @@ jobs:
           name: Verify AWS Environment
           command: |
             if [ -z "${CIRCLE_CLOUD_PROVIDER}" ];then
-              echo "You must provide the CIRCLE_CLOUD_PROVIDER environment variable in project settings for this job to run."
-              exit 1
+              echo "You must provide the CIRCLE_CLOUD_PROVIDER environment variable in project settings for this job to run.";
+              exit 1;
             fi
             if [[ "${CIRCLE_CLOUD_PROVIDER}" != 'aws' ]]; then
-            if [ -z "${CIRCLE_HOSTNAME}" -o -z "${CIRCLE_TOKEN}" ];then
-              echo "This installation is not in an AWS environment."
-              exit 1
+              echo "This installation is not in an AWS environment.";
+              exit 1;
             fi
 
   check_if_environment_is_gcp:
@@ -88,13 +87,12 @@ jobs:
           name: Verify AWS Environment
           command: |
             if [ -z "${CIRCLE_CLOUD_PROVIDER}" ];then
-              echo "You must provide the CIRCLE_CLOUD_PROVIDER environment variable in project settings for this job to run."
-              exit 1
+              echo "You must provide the CIRCLE_CLOUD_PROVIDER environment variable in project settings for this job to run.";
+              exit 1;
             fi
             if [[ "${CIRCLE_CLOUD_PROVIDER}" != 'gcp' ]]; then
-            if [ -z "${CIRCLE_HOSTNAME}" -o -z "${CIRCLE_TOKEN}" ];then
-              echo "This installation is not in an AWS environment."
-              exit 1
+              echo "This installation is not in an AWS environment.";
+              exit 1;
             fi
 
   # vm jobs
