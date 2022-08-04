@@ -62,6 +62,40 @@ jobs:
   xlarge: # 8 vCPUs, 16GB RAM
     <<: *resource_job_defaults
     resource_class: xlarge
+  
+  check_if_environment_is_aws:
+    docker:
+    - image: 'cimg/base:2021.02-20.04'
+    steps:
+      - run:
+          name: Verify AWS Environment
+          command: |
+            if [ -z "${CIRCLE_CLOUD_PROVIDER}" ];then
+              echo "You must provide the CIRCLE_CLOUD_PROVIDER environment variable in project settings for this job to run."
+              exit 1
+            fi
+            if [[ "${CIRCLE_CLOUD_PROVIDER}" != 'aws' ]]; then
+            if [ -z "${CIRCLE_HOSTNAME}" -o -z "${CIRCLE_TOKEN}" ];then
+              echo "This installation is not in an AWS environment."
+              exit 1
+            fi
+
+  check_if_environment_is_gcp:
+    docker:
+    - image: 'cimg/base:2021.02-20.04'
+    steps:
+      - run:
+          name: Verify AWS Environment
+          command: |
+            if [ -z "${CIRCLE_CLOUD_PROVIDER}" ];then
+              echo "You must provide the CIRCLE_CLOUD_PROVIDER environment variable in project settings for this job to run."
+              exit 1
+            fi
+            if [[ "${CIRCLE_CLOUD_PROVIDER}" != 'gcp' ]]; then
+            if [ -z "${CIRCLE_HOSTNAME}" -o -z "${CIRCLE_TOKEN}" ];then
+              echo "This installation is not in an AWS environment."
+              exit 1
+            fi
 
   # vm jobs
   machine:
@@ -242,10 +276,23 @@ workflows:
   vm_jobs:
     jobs:
       - machine
-      - aws_arm
       - remote_docker
       - docker_layer_caching
       - machine_dlc
+  
+  aws_specific_jobs:
+    jobs:
+      - check_if_environment_is_aws
+      - aws_arm:
+          requires:
+            - check_if_environment_is_aws
+  
+  gcp_specific_jobs:
+    jobs:
+      - check_if_environment_is_gcp
+      - android_machine:
+          requires:
+            - check_if_environment_is_gcp
 
   feature_jobs:
     jobs:
@@ -259,4 +306,3 @@ workflows:
           requires:
             - write_workspace
       - artifacts_test_results
-
