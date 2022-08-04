@@ -1,12 +1,14 @@
 # CircleCI Reality Check
 This repository is used to check for a proper installation of CircleCI Server. It implements a sample app that validates some basic CircleCI features in parallel workflows.
 
+![](misc/reality_check.png)
+
 ---
 
 ## Installation
 To install and run reality check on your CircleCI Server installation, follow these steps.
 
-1. Fork this repository to the GitHub environment tied to your server installation. [See here for more information.](https://support.circleci.com/hc/en-us/articles/360011235534).
+1. Fork this repository to the GitHub environment tied to your server installation. [See here for more information](https://support.circleci.com/hc/en-us/articles/360011235534).
 
 
 2. Set up your repository project in your CircleCI Server installation.
@@ -15,7 +17,7 @@ To install and run reality check on your CircleCI Server installation, follow th
 3. Generate a **personal access token - not a project token**, and add it as an environment variable in your project with the name `CIRCLE_TOKEN`.
 
 
-4. Determine the base URL of your install, including protocol, and remove the "app" subdomain if present, and trailing slash. Add it as an environment variable in your project with the name `CIRCLE_HOSTNAME`. 
+4. Determine the base URL of your install, including protocol, and remove the trailing slash and "app" subdomain if present. Add it as an environment variable in your project with the name `CIRCLE_HOSTNAME`. 
 
     > *Note*: As an example, if your dashboard is accessible at `https://app.server.example.com/dashboard/` your `CIRCLE_HOSTNAME` is `https://server.example.com`
 
