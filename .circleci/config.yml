@@ -113,7 +113,6 @@ jobs:
   android_machine:
     machine:
       image: android-default
-    resource_class: large
     steps:
       - run:
           <<: *basic_docker_build
