@@ -278,14 +278,14 @@ workflows:
       - docker_layer_caching
       - machine_dlc
   
-  aws_specific_jobs:
+  aws_jobs:
     jobs:
       - check_if_environment_is_aws
       - aws_arm:
           requires:
             - check_if_environment_is_aws
   
-  gcp_specific_jobs:
+  gcp_jobs:
     jobs:
       - check_if_environment_is_gcp
       - android_machine:
