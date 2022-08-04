@@ -77,10 +77,26 @@ jobs:
           echo 'Done sleeping.'
     environment:
       SLEEP: 1
+  
+  android_machine:
+    machine:
+      image: android-default
+    resource_class: large
+    steps:
+      - run:
+          <<: *basic_docker_build
+      - run: |
+          echo $SLEEP
+          date
+          sleep $SLEEP
+          date
+          echo 'Done sleeping.'
+    environment:
+      SLEEP: 1
 
   aws_arm:
     machine:
-      image: ubuntu-2004:202101-01
+      image: arm-default
     resource_class: arm.medium
     steps:
       - run:
