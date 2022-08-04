@@ -76,7 +76,7 @@ jobs:
             fi
             if [[ "${CIRCLE_CLOUD_PROVIDER}" != 'aws' ]]; then
               echo "This installation is not in an AWS environment. Cancelling downstream workflow.";
-              exit 1;
+              curl -X POST "${CIRCLE_HOSTNAME%/}/api/v2/workflow/$CIRCLE_WORKFLOW_ID/cancel?circle-token=$CIRCLE_TOKEN"
             fi
 
   check_if_environment_is_gcp:
