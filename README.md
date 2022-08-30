@@ -25,8 +25,8 @@ To install and run reality check on your CircleCI Server installation, follow th
 
 Context Name       | Environment Variable Key Name  | Value   
 -------------------|------------------------------- |-----------------------------
-`org-global`       | `CONTEXT_END_TO_END_TEST_VAR`  | `1`
-`individual-local` | `MULTI_CONTEXT_END_TO_END_VAR` | `1`
+`org-global-ryder`       | `CONTEXT_END_TO_END_TEST_VAR`  | `1`
+`individual-local-ryder` | `MULTI_CONTEXT_END_TO_END_VAR` | `1`
 
 ### Example AWS Server Installation
 ```bash
@@ -35,10 +35,10 @@ CIRCLE_TOKEN=123456789-personal-access-token
 CIRCLE_HOSTNAME=https://aws-server-install.example.com
 CIRCLE_CLOUD_PROVIDER=aws
 
-# org-global context environment variables
+# org-global-ryder context environment variables
 CONTEXT_END_TO_END_TEST_VAR=1
 
-# individual-local context environment variables
+# individual-local-ryder context environment variables
 MULTI_CONTEXT_END_TO_END_VAR=1
 ```
 
@@ -49,10 +49,10 @@ CIRCLE_TOKEN=123456789-personal-access-token
 CIRCLE_HOSTNAME=https://gcp-server-install.example.com
 CIRCLE_CLOUD_PROVIDER=gcp
 
-# org-global context environment variables
+# org-global-ryder context environment variables
 CONTEXT_END_TO_END_TEST_VAR=1
 
-# individual-local context environment variables
+# individual-local-ryder context environment variables
 MULTI_CONTEXT_END_TO_END_VAR=1
 ```
 
@@ -85,8 +85,8 @@ Tests the functionality  of the [`machine` executor](https://circleci.com/docs/2
 ## Features workflow
 - Tests ability to save and restore [caches](circleci.com/docs/2.0/caching)
 - Tests writing to and reading from [workspaces](https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
-- Tests the default `org-global` [context](https://circleci.com/docs/2.0/contexts) (*NOTE:* needs a key called `CONTEXT_END_TO_END_TEST_VAR` to exist in a context called `org-global`) 
-- Tests multiple contexts (*NOTE:* needs a key called `MULTI_CONTEXT_END_TO_END_VAR` to exist in a context called `individual-local`)
+- Tests the default `org-global-ryder` [context](https://circleci.com/docs/2.0/contexts) (*NOTE:* needs a key called `CONTEXT_END_TO_END_TEST_VAR` to exist in a context called `org-global-ryder`) 
+- Tests multiple contexts (*NOTE:* needs a key called `MULTI_CONTEXT_END_TO_END_VAR` to exist in a context called `individual-local-ryder`)
 - Tests upload/storage of [artifacts](https://circleci.com/docs/2.0/artifacts) and [test results](https://circleci.com/docs/2.0/collect-test-data)
 
 
