@@ -128,6 +128,7 @@ jobs:
   windows_machine:
     machine:
       image: windows-default
+    resource_class: windows.medium
     steps:
       - run:
           <<: *basic_docker_build
