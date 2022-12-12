@@ -125,6 +125,21 @@ jobs:
     environment:
       SLEEP: 1
 
+  windows_machine:
+    machine:
+      image: windows-default
+    steps:
+      - run:
+          <<: *basic_docker_build
+      - run: |
+          echo $SLEEP
+          date
+          sleep $SLEEP
+          date
+          echo 'Done sleeping.'
+    environment:
+      SLEEP: 1
+
   aws_arm:
     machine:
       image: arm-default
@@ -290,6 +305,9 @@ workflows:
       - android_machine:
           requires:
             - check_if_environment_is_gcp
+      - windows_machine:
+          requires:
+            - check_if_environment_is_gcp
 
   feature_jobs:
     jobs:
@@ -303,3 +321,5 @@ workflows:
           requires:
             - write_workspace
       - artifacts_test_results
+
+# VS Code Extension Version: 1.4.0
