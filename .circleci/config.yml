@@ -133,7 +133,7 @@ jobs:
     environment:
       SLEEP: 1
   
-  2xlarge+machine:
+  2xlargemachine:
     machine:
       resource_class: l1.2xlarge+
     steps:
@@ -312,7 +312,7 @@ workflows:
   gcp_jobs:
     jobs:
       - check_if_environment_is_gcp
-      - 2xlarge+machine:
+      - 2xlargemachine:
         requires:
           - check_if_environment_is_gcp
       - android_machine:
