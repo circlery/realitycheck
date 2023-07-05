@@ -63,6 +63,14 @@ jobs:
     <<: *resource_job_defaults
     resource_class: xlarge
   
+  2xlarge:
+    <<: *resource_job_defaults
+    resource_class: 2xlarge
+  
+  2xlarge+:
+    <<: *resource_job_defaults
+    resource_class: 2xlarge+
+  
   check_if_environment_is_aws:
     docker:
     - image: 'cimg/base:2021.02-20.04'
