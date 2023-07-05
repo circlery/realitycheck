@@ -313,8 +313,8 @@ workflows:
     jobs:
       - check_if_environment_is_gcp
       - 2xlargemachine:
-        requires:
-          - check_if_environment_is_gcp
+          requires:
+            - check_if_environment_is_gcp
       - android_machine:
           requires:
             - check_if_environment_is_gcp
