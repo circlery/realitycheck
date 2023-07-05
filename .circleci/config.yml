@@ -132,6 +132,21 @@ jobs:
           echo 'Done sleeping.'
     environment:
       SLEEP: 1
+  
+  2xlarge+machine:
+    machine:
+      resource_class: l1.2xlarge+
+    steps:
+      - run:
+          <<: *basic_docker_build
+      - run: |
+          echo $SLEEP
+          date
+          sleep $SLEEP
+          date
+          echo 'Done sleeping.'
+    environment:
+      SLEEP: 1
 
   aws_arm:
     machine:
@@ -297,6 +312,9 @@ workflows:
   gcp_jobs:
     jobs:
       - check_if_environment_is_gcp
+      - 2xlarge+machine:
+        requires:
+          - check_if_environment_is_gcp
       - android_machine:
           requires:
             - check_if_environment_is_gcp
