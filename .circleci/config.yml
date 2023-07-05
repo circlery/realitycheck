@@ -135,7 +135,7 @@ jobs:
   
   2xlargemachine:
     machine:
-      resource_class: 2xlarge
+      resource_class: "2xlarge+"
     steps:
       - run:
           <<: *basic_docker_build
